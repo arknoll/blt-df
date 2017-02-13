@@ -6,7 +6,6 @@
     "prefer-stable": true,
     "require": {
         "acquia/blt": "^8.3",
-        "acquia/lightning": "2.0.1",
         "cweagans/composer-patches": "^1.6.0",
         "drupal/acquia_connector": "^1.5.0",
         "drupal/acsf": "^1.32.0",
@@ -17,7 +16,9 @@
         "drupal/seckit": "^1.0.0-alpha2",
         "drupal/security_review": "*",
         "drupal/shield": "^1.0.0",
-        "drush/drush": "^8.1.8"
+        "drush/drush": "^8.1.8",
+        "acquia/df": "dev-removedeps",
+        "acquia/lightning": "2.0.1"
     },
     "require-dev": {
         "behat/behat": "^3.1",
@@ -28,12 +29,117 @@
         "drupal-composer/drupal-scaffold": "^2.1.0",
         "jarnaiz/behat-junit-formatter": "^1.3.2",
         "se/selenium-server-standalone": "^2.53",
-        "jakoch/phantomjs-installer": "^2.1.1-p07"
+        "jakoch/phantomjs-installer": "^2.1.1-p07",
+        "geerlingguy/drupal-vm": "~4.2"
     },
     "repositories": {
         "drupal": {
             "type": "composer",
             "url": "https://packages.drupal.org/8"
+        },
+        "acquia/df": {
+            "type": "vcs",
+            "url": "https://github.com/arknoll/df"
+        },
+        "desandro/masonry": {
+            "type": "package",
+            "package": {
+                "name": "desandro/masonry",
+                "version": "3.3.1",
+                "type": "drupal-library",
+                "dist": {
+                    "url": "https://github.com/desandro/masonry/archive/v3.3.1.zip",
+                    "type": "zip"
+                }
+            }
+        },
+        "desandro/imagesloaded": {
+            "type": "package",
+            "package": {
+                "name": "desandro/imagesloaded",
+                "version": "3.1.8",
+                "type": "drupal-library",
+                "dist": {
+                    "url": "https://github.com/desandro/imagesloaded/archive/v3.1.8.zip",
+                    "type": "zip"
+                }
+            }
+        },
+        "enyo/dropzone": {
+            "type": "package",
+            "package": {
+                "name": "enyo/dropzone",
+                "version": "4.2.0",
+                "type": "drupal-library",
+                "source": {
+                    "url": "https://github.com/enyo/dropzone",
+                    "type": "git",
+                    "reference": "origin/master"
+                }
+            }
+        },
+        "leaflet/leaflet": {
+            "type": "package",
+            "package": {
+                "name": "leaflet/leaflet",
+                "version": "1.0.3",
+                "type": "drupal-library",
+                "dist": {
+                    "url": "https://github.com/Leaflet/Leaflet/archive/v1.0.3.zip",
+                    "type": "zip"
+                }
+            }
+        },
+        "mjolnic/fontawesome-iconpicker": {
+            "type": "package",
+            "package": {
+                "name": "mjolnic/fontawesome-iconpicker",
+                "version": "1.2.0",
+                "type": "drupal-library",
+                "source": {
+                    "url": "https://github.com/mjolnic/fontawesome-iconpicker",
+                    "type": "git",
+                    "reference": "origin/master"
+                }
+            }
+        },
+        "kenwheeler/slick": {
+            "type": "package",
+            "package": {
+                "name": "kenwheeler/slick",
+                "version": "1.5.0",
+                "type": "drupal-library",
+                "source": {
+                    "url": "https://github.com/kenwheeler/slick",
+                    "type": "git",
+                    "reference": "origin/master"
+                }
+            }
+        },
+        "lite": {
+            "type": "package",
+            "package": {
+                "name": "lite",
+                "version": "dev-master",
+                "type": "drupal-library",
+                "source": {
+                    "url": "https://github.com/loopindex/ckeditor-track-changes",
+                    "type": "git",
+                    "reference": "origin/master"
+                }
+            }
+        },
+        "lokesh/lightbox2": {
+            "type": "package",
+            "package": {
+                "name": "lokesh/lightbox2",
+                "version": "2.9.0",
+                "type": "drupal-library",
+                "dist": {
+                    "url": "https://github.com/lokesh/lightbox2/archive/v2.9.0.zip",
+                    "type": "zip"
+                }
+            }
         }
     },
     "autoload-dev": {
@@ -55,11 +161,6 @@
             ]
         },
         "enable-patching": true,
-        "patches": {
-            "acquia/lightning": {
-                "New LightningExtension subcontexts do not autoload": "https://www.drupal.org/files/issues/2836258-3-lightning-extension-autoload.patch"
-            }
-        },
         "installer-paths": {
             "docroot/core": [
                 "type:drupal-core"
@@ -70,12 +171,20 @@
             "docroot/profiles/contrib/{$name}": [
                 "type:drupal-profile"
             ],
+            "docroot/libraries/{$name}": [
+                "type:drupal-library"
+            ],
             "docroot/themes/contrib/{$name}": [
                 "type:drupal-theme"
             ],
             "drush/contrib/{$name}": [
                 "type:drupal-drush"
             ]
+        },
+        "patches": {
+            "acquia/lightning": {
+                "New LightningExtension subcontexts do not autoload": "https://www.drupal.org/files/issues/2836258-3-lightning-extension-autoload.patch"
+            }
         }
     },
     "scripts": {

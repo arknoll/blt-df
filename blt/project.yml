@@ -1,9 +1,9 @@
 project:
   machine_name: df
-  prefix: BLT
-  human_name: 'BLTed 8'
+  prefix: DF
+  human_name: 'Demo Framework'
   profile:
-    name: lightning
+    name: df
   local:
     protocol: http
     hostname: 'local.${project.machine_name}.com'
@@ -46,3 +46,4 @@ modules:
   prod:
     enable: [acquia_connector, shield]
     uninstall: [devel, views_ui]
+

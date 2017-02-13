@@ -753,3 +753,8 @@ $settings['file_scan_ignore_directories'] = [
 # if (file_exists($app_root . '/' . $site_path . '/settings.local.php')) {
 #   include $app_root . '/' . $site_path . '/settings.local.php';
 # }
+require DRUPAL_ROOT . "/../vendor/acquia/blt/settings/blt.settings.php";
+$settings['install_profile'] = 'df';
+$settings['profile_directories'] = array (
+  0 => 'profiles/contrib/lightning',
+);
